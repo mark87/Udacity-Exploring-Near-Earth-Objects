@@ -82,24 +82,24 @@ def write_to_json(results, filename):
         else:
             result.neo.hazardous = bool(0)
 
-    """ Organize values into dictionary for each close approach in prepartion
-    for writing to JSON format
+        """ Organize values into dictionary for each close approach in prepartion
+        for writing to JSON format
 
-    Also convert values to specific data types.
-    """
-    result_dict = {
-        'datetime_utc': result.time_str,
-        'distance_au': float(result.distance),
-        'velocity_km_s': float(result.velocity),
-        'neo': {
-            'designation': str(result.neo.designation),
-            'name': result.neo.name,
-            'diameter_km': float(result.neo.diameter),
-            'potentially_hazardous': result.neo.hazardous
-            }
-      }
-    data.append(result_dict)  # Write each close approach dict to "data" list
-    # Open new JSON file with filename provided by user
+        Also convert values to specific data types.
+        """
+        result_dict = {
+            'datetime_utc': result.time_str,
+            'distance_au': float(result.distance),
+            'velocity_km_s': float(result.velocity),
+            'neo': {
+                'designation': str(result.neo.designation),
+                'name': result.neo.name,
+                'diameter_km': float(result.neo.diameter),
+                'potentially_hazardous': result.neo.hazardous
+                }
+          }
+        data.append(result_dict)  # Write each close approach dict to "data"
+        # list. Open new JSON file with filename provided by user
     with open(filename, 'w') as json_file:
         # Write "data" list to JSON file in JSON format
         json.dump(data, json_file)
